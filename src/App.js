@@ -1,4 +1,4 @@
-//import logo from './logo.svg';
+import logo from './logo.svg';
 import './App.css';
 
 // function App() {
@@ -24,7 +24,7 @@ import './App.css';
 
 function App() {
   return (
-    <div>
+    <div className='App'>
       <GameBar />
       <GameArea />
     </div>
@@ -33,45 +33,57 @@ function App() {
 
 export default App;
 
-// GameBar: =============================================================================================
-
-function GameBar() {
+function CentreContainer(props) {
   return (
-    <div>
-      <GameBarGroupLeft />
-      <GameBarGroupRight />
-    </div>
-  );
-}
-
-function GameBarGroup(props){
-  return (
-    <div>
+    <div className='CentreContainer'>
       {props.children}
     </div>
   );
 }
 
-function GameBarGroupLeft(){
+// GameBar: =============================================================================================
+
+function GameBar() {
   return (
-    <div>
-      <GameBarGroup>
+    <div className='GameBar'>
+      <CentreContainer>
+        <div className='GameBarMenu'>
+          <GameBarMenuGroupLeft />
+          <GameBarMenuGroupRight />
+        </div>
+      </CentreContainer>
+    </div>
+  );
+}
+
+function GameBarMenuGroup(props) {
+  return (
+    <div className='GameBarMenuGroup'>
+      {props.children}
+    </div>
+  );
+}
+
+function GameBarMenuGroupLeft() {
+  return (
+    <div className='GameBarMenuGroupLeft'>
+      <GameBarMenuGroup>
         <IconImage />
         <TitleLabel />
-      </GameBarGroup>
+      </GameBarMenuGroup>
     </div>
   );
 }
 
-function IconImage(){
+function IconImage() {
   return (
     <div>
-      <img src='logo.svg' alt='Xordle Icon' />
+      <img src={logo} alt='Xordle Icon' />
     </div>
   );
 }
 
-function TitleLabel(){
+function TitleLabel() {
   return (
     <div>
       Xordle
@@ -79,28 +91,28 @@ function TitleLabel(){
   );
 }
 
-function GameBarGroupRight(){
+function GameBarMenuGroupRight() {
   return (
-    <div>
-      <GameBarGroup>
+    <div className='GameBarMenuGroupRight'>
+      <GameBarMenuGroup>
         <WordCountBar />
-        <GameBarButton desc='Help' onClick={alert} imgSrc='logo.svg'/>
-      </GameBarGroup>
+        <GameBarButton desc='Help' onClick={alert} imgSrc={logo} />
+      </GameBarMenuGroup>
     </div>
   );
 }
 
-function WordCountBar(){
+function WordCountBar() {
   return (
-    <div>
+    <div className='WordCountBar'>
       <WordCountLabel wordCount={'X'} />
-      <GameBarButton desc='Increment Word Count' onClick={alert} imgSrc='logo.svg' />
-      <GameBarButton desc='Decrement Word Count' onClick={alert} imgSrc='logo.svg' />
+      <GameBarButton desc='Increment Word Count' onClick={alert} imgSrc={logo} />
+      <GameBarButton desc='Decrement Word Count' onClick={alert} imgSrc={logo} />
     </div>
   );
 }
 
-function WordCountLabel(props){
+function WordCountLabel(props) {
   return (
     <div>
       Words: {props.wordCount}
@@ -108,7 +120,7 @@ function WordCountLabel(props){
   );
 }
 
-function GameBarButton(props){
+function GameBarButton(props) {
   return (
     <div>
       <button onClick={props.onClick}>
@@ -121,102 +133,96 @@ function GameBarButton(props){
 
 // GameArea: ========================================================================================================
 
-function GameArea(){
+function GameArea() {
   return (
-    <div>
-      <AllWordsGrid />
-      <KeyboardGrid />
+    <div className='GameArea'>
+      <CentreContainer>
+        <AllWordsGrid />
+      </CentreContainer>
+      <CentreContainer>
+        <KeyboardGrid />
+      </CentreContainer>
     </div>
   );
 }
 
-function AllWordsGrid(){
+function AllWordsGrid() {
   return (
-    <div>
-      <ul>
-        <li><OneWordGrid /></li>
-        <li><OneWordGrid /></li>
-        <li><OneWordGrid /></li>
-        <li><OneWordGrid /></li>
-      </ul>
-    </div>
+    <ul className='AllWordsGrid'>
+      <li><OneWordGrid /></li>
+      <li><OneWordGrid /></li>
+      <li><OneWordGrid /></li>
+      <li><OneWordGrid /></li>
+    </ul>
   );
 }
 
-function OneWordGrid(){
+function OneWordGrid() {
   return (
-    <div>
-      <ul>
-        <li><GuessRow /></li>
-        <li><GuessRow /></li>
-        <li><GuessRow /></li>
-        <li><GuessRow /></li>
-        <li><GuessRow /></li>
-        <li><GuessRow /></li>
-        <li><GuessRow /></li>
-        <li><GuessRow /></li>
-        <li><GuessRow /></li>
-        <li><GuessRow /></li>
-      </ul>
-    </div>
+    <ul className='OneWordGrid'>
+      <li><GuessRow /></li>
+      <li><GuessRow /></li>
+      <li><GuessRow /></li>
+      <li><GuessRow /></li>
+      <li><GuessRow /></li>
+      <li><GuessRow /></li>
+      <li><GuessRow /></li>
+      <li><GuessRow /></li>
+      <li><GuessRow /></li>
+      <li><GuessRow /></li>
+    </ul>
   );
 }
 
-function GuessRow(){
+function GuessRow() {
   return (
-    <div>
-      <ul>
-        <li><LetterCell /></li>
-        <li><LetterCell /></li>
-        <li><LetterCell /></li>
-        <li><LetterCell /></li>
-        <li><LetterCell /></li>
-      </ul>
-    </div>
+    <ul className='GuessRow'>
+      <li><LetterCell /></li>
+      <li><LetterCell /></li>
+      <li><LetterCell /></li>
+      <li><LetterCell /></li>
+      <li><LetterCell /></li>
+    </ul>
   );
 }
 
-function LetterCell(){
+function LetterCell() {
   return (
-    <div>
+    <div className='LetterCell'>
       X
     </div>
   );
 }
 
-function KeyboardGrid(){
+function KeyboardGrid() {
   return (
-    <div>
-      <ul>
-        <li><KeyboardRow /></li>
-        <li><KeyboardRow /></li>
-        <li><KeyboardRow /></li>
-      </ul>
-    </div>
+    <ul className='KeyboardGrid'>
+      <li><KeyboardRow /></li>
+      <li><KeyboardRow /></li>
+      <li><KeyboardRow /></li>
+    </ul>
   );
 }
 
-function KeyboardRow(){
+function KeyboardRow() {
   return (
-    <div>
-      <ul>
-        <li><KeyboardCell /></li>
-        <li><KeyboardCell /></li>
-        <li><KeyboardCell /></li>
-        <li><KeyboardCell /></li>
-        <li><KeyboardCell /></li>
-        <li><KeyboardCell /></li>
-        <li><KeyboardCell /></li>
-        <li><KeyboardCell /></li>
-        <li><KeyboardCell /></li>
-      </ul>
-    </div>
+    <ul className='KeyboardRow'>
+      <li><KeyboardCell /></li>
+      <li><KeyboardCell /></li>
+      <li><KeyboardCell /></li>
+      <li><KeyboardCell /></li>
+      <li><KeyboardCell /></li>
+      <li><KeyboardCell /></li>
+      <li><KeyboardCell /></li>
+      <li><KeyboardCell /></li>
+      <li><KeyboardCell /></li>
+    </ul>
   );
 }
 
-function KeyboardCell(){
+function KeyboardCell() {
   return (
-    <div>
+    <div className='KeyboardCell'>
       <button>
         <LetterCell />
       </button>
